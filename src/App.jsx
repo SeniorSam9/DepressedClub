@@ -1,10 +1,12 @@
-import { Header, LetterForm } from "./components/";
+import { Header, LetterForm, Letters } from "./components/";
+import LettersContextProvider from "./contexts/LettersConetxt";
 
 export default function App() {
   return (
-    <div id="app">
+    <LettersContextProvider>
       <Header />
       <LetterForm />
-    </div>
+      <Letters />
+    </LettersContextProvider>
   );
 }

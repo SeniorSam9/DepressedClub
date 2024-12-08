@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
-const LettersContext = createContext();
+export const LettersContext = createContext();
 
 export default function LettersContextProvider({ children }) {
   const [letters, setLetters] = useState([]);
