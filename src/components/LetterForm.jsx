@@ -7,14 +7,35 @@ export default function LetterForm() {
   const userLetterRef = useRef(null);
   const { addLetter } = useContext(LettersContext);
 
-  const handleLetterSubmit = (evt) => {
+  const generateUniqueAccount = () => {
+    const randomNumbers = Math.floor(1000 + Math.random() * 9000);
+    const uniqueId = uuidv4();
+    return `Anonymous#${randomNumbers}-${uniqueId}`;
+  };
+
+  const handleLetterSubmit = async (evt) => {
     evt.preventDefault();
+    // add letter to state
     addLetter({
       id: uuidv4(),
-      owner: "me",
+      owner: generateUniqueAccount(),
       message: userLetterRef.current.value,
       views: 500,
     });
+
+    // add letter to DB backend
+    const response = await fetch("http://localhost:3000/add-letter", {
+      method: "POST",
+      body: JSON.stringify({
+        id: uuidv4(),
+        owner: generateUniqueAccount(),
+        message: userLetterRef.current.value,
+        views: 500,
+      }),
+      "Content-Type": "application/json",
+      mode: "cors",
+    });
+    const data = await response.json();
   };
 
   return (

@@ -3,10 +3,12 @@ import LettersContextProvider from "./contexts/LettersConetxt";
 
 export default function App() {
   return (
-    <LettersContextProvider>
-      <Header />
-      <LetterForm />
-      <Letters />
-    </LettersContextProvider>
+    <div className="bg-zinc-900 h-screen text-white">
+      <LettersContextProvider>
+        <Header />
+        <LetterForm />
+        <Letters />
+      </LettersContextProvider>
+    </div>
   );
 }
