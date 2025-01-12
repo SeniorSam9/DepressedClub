@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url) => {
+const useFetch = (url, options) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -11,7 +11,7 @@ const useFetch = (url) => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(url, { signal });
+        const response = await fetch(url, { ...options, signal });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -19,10 +19,10 @@ const useFetch = (url) => {
         setData(result);
       } catch (error) {
         if (error.name !== "AbortError") {
-          setError(error);
+          setIsError(error);
         }
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -33,7 +33,7 @@ const useFetch = (url) => {
     };
   }, [url]);
 
-  return { data, loading, error };
+  return { data, isLoading, isError };
 };
 
 export default useFetch;

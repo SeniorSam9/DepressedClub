@@ -3,7 +3,7 @@ import LettersContextProvider from "./contexts/LettersConetxt";
 
 export default function App() {
   return (
-    <div className="bg-zinc-900 h-screen text-white">
+    <div className="h-screen bg-[#212631] text-white">
       <LettersContextProvider>
         <Header />
         <LetterForm />
