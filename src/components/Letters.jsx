@@ -7,7 +7,7 @@ export default function Letters() {
   return (
     <div
       id="letters-container"
-      className="flex flex-col items-center gap-y-4 overflow-y-auto"
+      className="flex flex-col items-center gap-y-4 overflow-y-auto mt-[20%]"
     >
       {letters.map((letter) => (
         <div

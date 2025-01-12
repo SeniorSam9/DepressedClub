@@ -49,7 +49,7 @@ export default function LetterForm() {
 
   return (
     <form
-      className="flex flex-col items-center mt-4"
+      className="fixed top-6 left-0 w-full flex flex-col items-center bg-[#212631] shadow-md z-10"
       onSubmit={handleLetterSubmit}
     >
       <h1>This is your space to share anything on your mind.</h1>
