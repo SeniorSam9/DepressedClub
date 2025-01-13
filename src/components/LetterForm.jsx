@@ -30,14 +30,16 @@ export default function LetterForm() {
       // add letter to DB backend
       const response = await fetch("http://localhost:3000/letter/add-letter", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          mode: "cors",
+        },
         body: JSON.stringify({
           id: uuidv4(),
           owner: generateUniqueAccount(),
           message: userLetterRef.current.value,
           views: 0,
         }),
-        "Content-Type": "application/json",
-        mode: "cors",
       });
       const data = await response.json();
     } catch (error) {
